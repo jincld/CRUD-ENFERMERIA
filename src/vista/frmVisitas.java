@@ -87,6 +87,7 @@ public class frmVisitas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtbPacientes.setEnabled(false);
         jScrollPane1.setViewportView(jtbPacientes);
 
         btnBuscar.setText("Buscar");

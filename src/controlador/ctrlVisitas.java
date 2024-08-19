@@ -18,6 +18,7 @@ public class ctrlVisitas implements MouseListener{
     this.vista = vista;
     
     vista.btnAgregar.addMouseListener(this);
+    modelo.Mostrar(vista.jtbPacientes);
     } 
 
     @Override
@@ -30,6 +31,7 @@ public class ctrlVisitas implements MouseListener{
             modelo.setESPECIALIDAD(vista.txtEspecialidad.getText());
             
             modelo.Guardar();
+            modelo.Mostrar(vista.jtbPacientes);
         }
     }
 
