@@ -18,6 +18,7 @@ public class frmVisitas extends javax.swing.JFrame {
      */
     public frmVisitas() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
     
     public static void initFrmVisitas(){
@@ -87,7 +88,7 @@ public class frmVisitas extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtbPacientes.setEnabled(false);
+        jtbPacientes.setCellSelectionEnabled(true);
         jScrollPane1.setViewportView(jtbPacientes);
 
         btnBuscar.setText("Buscar");

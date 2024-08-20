@@ -1,12 +1,14 @@
 
 package controlador;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import modelo.Visitas;
 import vista.frmVisitas;
 
-public class ctrlVisitas implements MouseListener{
+public class ctrlVisitas implements MouseListener, KeyListener{
     
     //LLAMAR CAPAS MODELO Y VISTA
     private Visitas modelo;
@@ -19,6 +21,14 @@ public class ctrlVisitas implements MouseListener{
     
     vista.btnAgregar.addMouseListener(this);
     modelo.Mostrar(vista.jtbPacientes);
+    
+    vista.btnEliminar.addMouseListener(this);
+    vista.jtbPacientes.addMouseListener(this);
+    vista.btnEditar.addMouseListener(this);
+    vista.btnLimpiar.addMouseListener(this);
+    vista.txtBuscar.addKeyListener(this);
+    vista.btnBuscar.addMouseListener(this);
+    
     } 
 
     @Override
@@ -33,6 +43,32 @@ public class ctrlVisitas implements MouseListener{
             modelo.Guardar();
             modelo.Mostrar(vista.jtbPacientes);
         }
+        
+        if (e.getSource() == vista.btnEliminar) {
+            
+            modelo.Eliminar(vista.jtbPacientes);
+            modelo.Mostrar(vista.jtbPacientes);
+        }
+        
+        if (e.getSource() == vista.jtbPacientes) {
+            
+            modelo.cargarDatosTabla(vista);
+        }
+        
+        if (e.getSource() == vista.btnEditar) {
+            
+            modelo.setNOMBRE(vista.txtNombre.getText());
+            modelo.setEDAD(Integer.parseInt(vista.txtEdad.getText()));
+            modelo.setESPECIALIDAD(vista.txtEspecialidad.getText());
+            
+            modelo.Actualizar(vista.jtbPacientes);
+            modelo.Mostrar(vista.jtbPacientes);
+        }
+        
+        if (e.getSource() == vista.btnLimpiar) {
+            modelo.Limpiar(vista);
+        }
+        
     }
 
     @Override
@@ -49,6 +85,24 @@ public class ctrlVisitas implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+        if (e.getSource() == vista.txtBuscar) {
+            modelo.Buscar(vista.jtbPacientes, vista.txtBuscar);
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
     
 }
